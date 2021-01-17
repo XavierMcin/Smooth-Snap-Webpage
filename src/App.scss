@@ -1,12 +1,13 @@
 /******DOCUMENT STYLES******/
 /***************************/
-::-webkit-scrollbar {
-  display: none;
+
+
+::-webkit-scrollbar { 
+    display: none; 
 }
 
 html {
   position: absolute;
-  -webkit-transition: top 1.5s cubic-bezier(0.42, 0, 0, 1.07);
   transition: top 1.5s cubic-bezier(0.42, 0, 0, 1.07);
 }
 
@@ -14,8 +15,13 @@ html:hover {
   top: -100vh;
 }
 
+
 /*****HEADER*****/
 /****************/
+
+
+
+
 header {
   position: absolute;
   z-index: 100;
@@ -62,20 +68,20 @@ aside li a {
   font-size: .9rem;
 }
 
+
+
+
 /*****SLIDES*****/
 /****************/
+
 .slider {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 100%;
   height: 100vh;
 }
 
 .flex-contain {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  flex: 1;
 }
 
 .flex-contain-img {
@@ -95,8 +101,7 @@ aside li a {
   position: absolute;
   z-index: 300;
   top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   width: 100%;
   text-align: center;
   font-family: 'Muli', sans-serif;
@@ -107,13 +112,12 @@ aside li a {
 
 .slide-container {
   position: relative;
-  width: 100%;
+  width: 100%; 
   height: 100%;
 }
 
 .slide-container video {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -124,8 +128,7 @@ aside li a {
   height: 36.1vw;
   position: absolute;
   top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   left: 25%;
 }
 
@@ -142,11 +145,16 @@ aside li a {
   width: 100%;
   height: 100%;
   position: absolute;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
+
+
+
 /*  s l i d e - 1 */
+
+
+
 .slide-1 {
   overflow: hidden;
   position: relative;
@@ -156,22 +164,20 @@ aside li a {
   width: 100%;
   height: 100%;
   position: absolute;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .image-wrap {
   position: relative;
   height: 100%;
-  width: 100vw;
+  width: 100vw; 
 }
 
 .image-wrap h1 {
   color: #fff;
   position: absolute;
   top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   width: 100%;
   text-align: center;
   font-family: 'Roboto', sans-serif;
@@ -180,7 +186,12 @@ aside li a {
   margin: 0 auto;
 }
 
+
+
+
 /*  s l i d e - 2 */
+
+
 .slide-2 {
   background: #efefef;
   display: block;
@@ -205,7 +216,12 @@ aside li a {
   margin-top: 5%;
 }
 
+
+
+
 /*  s l i d e - 15 */
+
+
 .slide-15 {
   background: #efefef;
   display: block;
@@ -229,4 +245,3 @@ aside li a {
 .slide-15 p:nth-of-type(2) {
   margin-top: 3%;
 }
-/*# sourceMappingURL=App.css.map */

@@ -1,24 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import './Components/Aside.js';
+import SideNav from './Components/Aside';
+import RightVid from './Components/RightVid';
+import LeftVid from './Components/LeftVid';
 
 function App() {
+
+  let slideBlocks = [];
+  for(let i = 0; i < 12; i++) {
+    if (i % 2 === 0) {
+      slideBlocks.push(<RightVid />);
+    } else {
+      slideBlocks.push(<LeftVid />);
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+
+    <div>
+
+      <header>
+        <p>Fame & Partners</p>
+            <p>Fall / Winter 2018 Preview</p>
+
+        {/* Fixed Side Navigation */}
       </header>
+
+      <SideNav />
+
+      {slideBlocks}
+
+
     </div>
+
   );
 }
 
