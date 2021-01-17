@@ -30,8 +30,20 @@ function App() {
 
       <main>
 
-        {slideBlocks}
+        <section class="slider slide-1">
+          <img src="./images/hero.jpg"></img>
+          <div class="image-wrap">
+            <h1>The World. As She Wears It.</h1>
+          </div>
+        </section>
         
+        <section class="slider slide-2">
+          <p>She is limitless. Without boundaries. Multifaceted. Global. Fluid and free.</p>
+          <p>Introducing a collection that lives this life with her; taking her from day to night and back again, from boardroom to brunch and back home. Trans-seasonal, multi-purpose, all-occasion–and all her own.</p>
+        </section>
+
+        {slideBlocks}
+
       </main>
 
 
