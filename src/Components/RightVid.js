@@ -1,19 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-function RightVid() {
+function RightVid(props) {
     return (
 
-        <section class="slider slide-3" id="slide1">
+        <section class={"slider " + "slide-" + (props.block + 1)} id={"slide" + (props.block + 1)}>
             <div class=" flex-contain flex-contain-img">
                 <div class="slide-container">
-                    <img src="images/LOOK_1.jpg"></img>
+                    <img src={"./images/" + "block-" + (props.block + 1) + ".jpg"}></img>
                     <p>Wool Overcoat - Floral Midi</p>
                 </div>
             </div>
             <div class="flex-contain flex-contain-vid">
                 <div class="slide-container">
-                    <video src="videos/web-video (4).mp4" muted></video>
+                    <video src={"./Videos/" + "slidevideo-" + (props.block + 1) + ".mp4"} muted></video>
                     <h2>Look 01</h2>
                 </div>
             </div>
