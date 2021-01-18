@@ -11,7 +11,16 @@ html {
   transition: top 1.5s cubic-bezier(0.42, 0, 0, 1.07);
 }
 
+#mainWrap {
+    transition: transform .8s ease-in-out;
+    position: fixed;
+}
 
+.scroller {
+  background-color: blue;
+  width: 100vw;
+
+}
 
 
 /*****HEADER*****/
