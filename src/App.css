@@ -4,17 +4,11 @@
   display: none;
 }
 
-html {
-  position: absolute;
-  -webkit-transition: top 1.5s cubic-bezier(0.42, 0, 0, 1.07);
-  transition: top 1.5s cubic-bezier(0.42, 0, 0, 1.07);
+body.lock {
+  overflow: hidden;
 }
 
 #mainWrap {
-  -webkit-transition: -webkit-transform .8s ease-in-out;
-  transition: -webkit-transform .8s ease-in-out;
-  transition: transform .8s ease-in-out;
-  transition: transform .8s ease-in-out, -webkit-transform .8s ease-in-out;
   position: fixed;
 }
 
@@ -23,15 +17,44 @@ html {
   width: 100vw;
 }
 
+.scroller div {
+  width: 100%;
+  height: 100vh;
+}
+
+.scroller div:nth-child(odd) {
+  background-color: aquamarine;
+}
+
+.scroller div:nth-child(even) {
+  background-color: #2d0e5f;
+}
+
 /*****HEADER*****/
 /****************/
 header {
   position: absolute;
+  width: 100%;
+  height: 100px;
   z-index: 100;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header span {
+  width: 76.5%;
+  height: 100%;
+  background-color: aqua;
 }
 
 header p {
-  position: fixed;
   color: #fff;
   font-family: 'Roboto', sans-serif;
   font-size: .9rem;
@@ -49,7 +72,7 @@ header p:nth-of-type(2) {
 
 aside {
   position: fixed;
-  top: 27%;
+  top: 27vh;
   left: 3%;
   z-index: 300;
 }

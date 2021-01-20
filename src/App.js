@@ -6,6 +6,9 @@ import RightVid from './Components/RightVid';
 import LeftVid from './Components/LeftVid';
 
 let slideBlocks = [],
+    pScroll = 0,
+    cScroll = 0,
+    cBlock = 0,
     mainWrapper = document.querySelector('#mainWrap'),
     slide = 0;
 
@@ -17,6 +20,28 @@ let slideBlocks = [],
     }
   }
 
+let blocks = [
+  document.querySelector('.slide-1'),
+  document.querySelector('.slide-2'),
+  document.querySelector('.slide-3'),
+  document.querySelector('.slide-4'),
+  document.querySelector('.slide-5'),
+  document.querySelector('.slide-6'),
+  document.querySelector('.slide-7'),
+  document.querySelector('.slide-8'),
+  document.querySelector('.slide-9'),
+  document.querySelector('.slide-10'),
+  document.querySelector('.slide-11'),
+  document.querySelector('.slide-12'),
+  document.querySelector('.slide-13'),
+  document.querySelector('.slide-14')
+];
+
+let tForm = {
+  transform: "translate(0,0vh)",
+  transition: "transform .6s ease-in-out"
+}
+
 class App extends React.Component {
 
   constructor() {
@@ -27,43 +52,83 @@ class App extends React.Component {
   }
 
   scroller() {
-    let wrap = document.getElementById('mainWrap');
-    let top = window.pageYOffset;
-    console.log(top);
+
+    let wrap = document.getElementById('mainWrap'),
+        body = document.querySelector('body'),
+        scroller = document.querySelector('.scroller'),
+        top = window.scrollY;
+
+
+    if (top > cScroll + 50) {
+      if (cBlock !== 13) {
+        cBlock++;
+        cScroll = blocks[cBlock].offsetTop;
+        pScroll = blocks[cBlock - 1].offsetTop;
+        window.scrollTo(0,cScroll);
+        body.classList.add('lock');
+        setTimeout(() => {
+          body.classList.remove('lock');
+        }, 1000);
+        tForm = {
+          transform: "translate(0,-" + cBlock + "00vh)",
+          transition: "transform .6s ease-in-out"
+        }
+      }
+
+    } else if (top < cScroll - 50) {
+      cBlock--;
+      cScroll = pScroll;
+
+      if (cBlock !== 0) {pScroll = blocks[cBlock - 1].offsetTop;}
+      else {pScroll = blocks[cBlock].offsetTop;}
+
+      window.scrollTo(0,cScroll);
+      body.classList.add('lock');
+      setTimeout(() => {
+        body.classList.remove('lock');
+      }, 1000);
+      console.log(pScroll);
+    } 
+
+  }
+
+  setter() {
+    let wrap = document.querySelector('#mainWrap'),
+          wHeight = wrap.offsetHeight,
+          scroller = document.querySelector('.scroller');
+
+    scroller.style.height = wHeight + "px";
+
+
+    for (let i = 0; i < 14; i++) {
+      blocks[i] = document.querySelector('.slide-' + (i + 1));
+    }
   }
 
 
   render() {
 
+    window.addEventListener('beforeunload', () => {
+      window.scrollTo(0,0);
+    });
+
     window.addEventListener('load', () => {
-      let wrap = document.querySelector('#mainWrap'),
-          wHeight = wrap.offsetHeight,
-          scroller = document.querySelector('.scroller');
-
-      scroller.style.height = wHeight + "px";
-
-      console.log(scroller);
+      this.setter();
     });
 
     window.addEventListener('scroll', () => {
-      console.log(window.scrollY);
+      this.scroller();
     });
-
-    let topper = 25,
-        tStyle = "translate(0," + topper + "vh)";
-
-    let tForm = {
-        transform: tStyle
-    }
 
   
     return (
 
-      <div id="mainWrap">
+      <div id="mainWrap" style={tForm}>
 
         <header>
           <p>Fame & Partners</p>
-              <p>Fall / Winter 2018 Preview</p>
+          <span></span>
+          <p>Fall / Winter 2018 Preview</p>
 
           {/* Fixed Side Navigation */}
         </header>
