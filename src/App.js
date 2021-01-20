@@ -8,9 +8,7 @@ import LeftVid from './Components/LeftVid';
 let slideBlocks = [],
     pScroll = 0,
     cScroll = 0,
-    cBlock = 0,
-    mainWrapper = document.querySelector('#mainWrap'),
-    slide = 0;
+    cBlock = 0;
 
   for(let i = 0; i < 12; i++) {
     if (i % 2 === 0) {
@@ -37,25 +35,28 @@ let blocks = [
   document.querySelector('.slide-14')
 ];
 
-let tForm = {
-  transform: "translate(0,0vh)",
-  transition: "transform .6s ease-in-out"
-}
 
 class App extends React.Component {
 
   constructor() {
     super();
     this.state = {
+      tForm: {
+        transform: "translate(0,0vh)",
+        transition: "transform .6s ease-in-out"
+      },
+      headerTop: {
+        top: `${cBlock}px`,
+        transition: "top .6s linear"
+      }
 
     }
+    this.scroller = this.scroller.bind(this);
   }
 
   scroller() {
 
-    let wrap = document.getElementById('mainWrap'),
-        body = document.querySelector('body'),
-        scroller = document.querySelector('.scroller'),
+    let body = document.querySelector('body'),
         top = window.scrollY;
 
 
@@ -69,10 +70,13 @@ class App extends React.Component {
         setTimeout(() => {
           body.classList.remove('lock');
         }, 1000);
-        tForm = {
-          transform: "translate(0,-" + cBlock + "00vh)",
-          transition: "transform .6s ease-in-out"
-        }
+
+        this.setState({
+          tForm: {
+            transform: `translate(0,-${cBlock}00vh)`,
+            transition: "transform .6s ease-in-out"
+          }
+        });
       }
 
     } else if (top < cScroll - 50) {
@@ -87,9 +91,40 @@ class App extends React.Component {
       setTimeout(() => {
         body.classList.remove('lock');
       }, 1000);
-      console.log(pScroll);
+      
+      this.setState({
+        tForm: {
+          transform: `translate(0,-${cBlock}00vh)`,
+          transition: "transform .6s ease-in-out"
+        }
+      });
     } 
 
+  }
+
+  jumper(elem) {
+    let bJump = elem.currentTarget.className;
+
+    if (bJump.length === 6) {
+      let cName = parseInt(bJump.slice(bJump.length - 2)) + 1;
+      this.setState({
+        tForm: {
+          transform: "translate(0,-" + cName + "00vh)",
+          transition: "transform .6s ease-in-out"
+        }
+      });
+    } else {
+      let cName = parseInt(bJump.slice(bJump.length - 1)) + 1;
+      this.setState({
+        tForm: {
+          transform: "translate(0,-" + cName + "00vh)",
+          transition: "transform .6s ease-in-out"
+        }
+      });
+    }
+
+    
+    console.log(bJump);
   }
 
   setter() {
@@ -102,6 +137,42 @@ class App extends React.Component {
 
     for (let i = 0; i < 14; i++) {
       blocks[i] = document.querySelector('.slide-' + (i + 1));
+    }
+  }
+
+  previewsShow(elem) {
+    let pic = elem.currentTarget,
+        pName = pic.className;
+
+    if (pName.length === 6) {
+      let cName = parseInt(pName.slice(pName.length - 2)),
+          pPicture = document.querySelector(`.pic-wrap div:nth-of-type(${cName})`);
+          
+      pPicture.classList.remove('hide');
+    } else {
+      let cName = parseInt(pName[pName.length - 1]),
+          pPicture = document.querySelector(`.pic-wrap div:nth-of-type(${cName})`);
+      
+      pPicture.classList.remove('hide');
+    }
+
+    
+  }
+
+  previewsHide(elem) {
+    let pic = elem.currentTarget,
+        pName = pic.className;
+
+    if (pName.length === 6) {
+      let cName = parseInt(pName.slice(pName.length - 2)),
+          pPicture = document.querySelector(`.pic-wrap div:nth-of-type(${cName})`);
+          
+      pPicture.classList.add('hide');
+    } else {
+      let cName = parseInt(pName[pName.length - 1]),
+          pPicture = document.querySelector(`.pic-wrap div:nth-of-type(${cName})`);
+      
+      pPicture.classList.add('hide');
     }
   }
 
@@ -123,9 +194,9 @@ class App extends React.Component {
   
     return (
 
-      <div id="mainWrap" style={tForm}>
+      <div id="mainWrap" style={this.state.tForm}>
 
-        <header>
+        <header style={this.state.headerTop}>
           <p>Fame & Partners</p>
           <span></span>
           <p>Fall / Winter 2018 Preview</p>
@@ -133,12 +204,12 @@ class App extends React.Component {
           {/* Fixed Side Navigation */}
         </header>
 
-        <SideNav />
+        <SideNav sPreview={this.previewsShow} hPreview={this.previewsHide} bJumper={this.jumper}/>
 
         <main>
 
           <section className="slider slide-1">
-            <img src="./images/hero.jpg"></img>
+            <img src="./images/hero.jpg" alt=""></img>
             <div className="image-wrap">
               <h1>The World. As She Wears It.</h1>
             </div>
