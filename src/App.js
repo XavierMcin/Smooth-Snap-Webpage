@@ -68,6 +68,15 @@ class App extends React.Component {
         pScroll = blocks[cBlock - 1].offsetTop;
         window.scrollTo(0,cScroll);
         body.classList.add('lock');
+        if (cBlock === 2) {
+          let vidStart = document.querySelector(`.slide-${cBlock + 1} .slide-container video`);
+          vidStart.play();
+        } else if (cBlock > 2) {
+          let vidStart = document.querySelector(`.slide-${cBlock + 1} .slide-container video`),
+              vidStop = document.querySelector(`.slide-${cBlock} .slide-container video`);
+          vidStart.play();
+          vidStop.pause();
+        }
         setTimeout(() => {
           body.classList.remove('lock');
         }, 1000);
@@ -93,6 +102,15 @@ class App extends React.Component {
 
       window.scrollTo(0,cScroll);
       body.classList.add('lock');
+      if (cBlock === 13) {
+        let vidStart = document.querySelector(`.slide-${cBlock + 1} .slide-container video`);
+        vidStart.play();
+      } else if (cBlock < 13 && cBlock > 1) {
+        let vidStop = document.querySelector(`.slide-${cBlock + 2} .slide-container video`),
+            vidStart = document.querySelector(`.slide-${cBlock + 1} .slide-container video`);
+        vidStart.play();
+        vidStop.pause();
+      }
       setTimeout(() => {
         body.classList.remove('lock');
       }, 1000);
