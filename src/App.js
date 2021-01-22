@@ -46,12 +46,13 @@ class App extends React.Component {
         transition: "transform .6s ease-in-out"
       },
       headerTop: {
-        top: `${cBlock}px`,
-        transition: "top .6s linear"
+        transform: "translate(0,0vh)",
+        transition: "transform .6s ease-in-out"
       }
 
     }
     this.scroller = this.scroller.bind(this);
+    this.jumper = this.jumper.bind(this);
   }
 
   scroller() {
@@ -75,6 +76,10 @@ class App extends React.Component {
           tForm: {
             transform: `translate(0,-${cBlock}00vh)`,
             transition: "transform .6s ease-in-out"
+          },
+          headerTop: {
+            transform: `translate(0,${cBlock}00vh)`,
+            transition: "transform .6s ease-in-out"
           }
         });
       }
@@ -96,6 +101,10 @@ class App extends React.Component {
         tForm: {
           transform: `translate(0,-${cBlock}00vh)`,
           transition: "transform .6s ease-in-out"
+        },
+        headerTop: {
+          transform: `translate(0,${cBlock}00vh)`,
+          transition: "transform .6s ease-in-out"
         }
       });
     } 
@@ -103,21 +112,47 @@ class App extends React.Component {
   }
 
   jumper(elem) {
-    let bJump = elem.currentTarget.className;
+    let bJump = elem.currentTarget.className,
+        body = document.querySelector('body');
 
     if (bJump.length === 6) {
-      let cName = parseInt(bJump.slice(bJump.length - 2)) + 1;
+
+      cBlock = parseInt(bJump.slice(bJump.length - 2)) + 1;
+      cScroll = blocks[cBlock].offsetTop;
+      pScroll = blocks[cBlock - 1].offsetTop;
+      window.scrollTo(0,cScroll);
+      body.classList.add('lock');
+      setTimeout(() => {
+        body.classList.remove('lock');
+      }, 1000);
+
       this.setState({
         tForm: {
-          transform: "translate(0,-" + cName + "00vh)",
+          transform: `translate(0,-${cBlock}00vh)`,
+          transition: "transform .6s ease-in-out"
+        },
+        headerTop: {
+          transform: `translate(0,${cBlock}00vh)`,
           transition: "transform .6s ease-in-out"
         }
       });
     } else {
-      let cName = parseInt(bJump.slice(bJump.length - 1)) + 1;
+      cBlock = parseInt(bJump.slice(bJump.length - 1)) + 1;
+      cScroll = blocks[cBlock].offsetTop;
+      pScroll = blocks[cBlock - 1].offsetTop;
+      window.scrollTo(0,cScroll);
+      body.classList.add('lock');
+      setTimeout(() => {
+        body.classList.remove('lock');
+      }, 1000);
+
       this.setState({
         tForm: {
-          transform: "translate(0,-" + cName + "00vh)",
+          transform: `translate(0,-${cBlock}00vh)`,
+          transition: "transform .6s ease-in-out"
+        },
+        headerTop: {
+          transform: `translate(0,${cBlock}00vh)`,
           transition: "transform .6s ease-in-out"
         }
       });
@@ -187,9 +222,12 @@ class App extends React.Component {
       this.setter();
     });
 
-    window.addEventListener('scroll', () => {
-      this.scroller();
-    });
+    setTimeout(() => {
+      window.addEventListener('scroll', () => {
+        this.scroller();
+      });
+    }, 500);
+
 
   
     return (
@@ -204,7 +242,7 @@ class App extends React.Component {
           {/* Fixed Side Navigation */}
         </header>
 
-        <SideNav sPreview={this.previewsShow} hPreview={this.previewsHide} bJumper={this.jumper}/>
+        <SideNav sPreview={this.previewsShow} hPreview={this.previewsHide} bJumper={this.jumper} mover={this.state.headerTop}/>
 
         <main>
 
