@@ -8,13 +8,20 @@ import LeftVid from './Components/LeftVid';
 let slideBlocks = [],
     pScroll = 0,
     cScroll = 0,
-    cBlock = 0;
+    cBlock = 0,
+    imgText = 0;
 
   for(let i = 0; i < 12; i++) {
+    
+    if (imgText === 6) {
+      imgText = 0;
+    }
     if (i % 2 === 0) {
-      slideBlocks.push(<RightVid key={i} block={i}/>);
+      slideBlocks.push(<RightVid key={i} block={i} imgBlock={imgText}/>);
+      imgText++;
     } else {
-      slideBlocks.push(<LeftVid key={i} block={i}/>);
+      slideBlocks.push(<LeftVid key={i} block={i} imgBlock={imgText}/>);
+      imgText++;
     }
   }
 
@@ -126,7 +133,7 @@ class App extends React.Component {
         }
       });
     } 
-
+    console.log(cBlock);
   }
 
   jumper(elem) {
@@ -140,6 +147,15 @@ class App extends React.Component {
       pScroll = blocks[cBlock - 1].offsetTop;
       window.scrollTo(0,cScroll);
       body.classList.add('lock');
+      if (cBlock === 2) {
+        let vidStart = document.querySelector(`.slide-${cBlock + 1} .slide-container video`);
+        vidStart.play();
+      } else if (cBlock > 2) {
+        let vidStart = document.querySelector(`.slide-${cBlock + 1} .slide-container video`),
+            vidStop = document.querySelector(`.slide-${cBlock} .slide-container video`);
+        vidStart.play();
+        vidStop.pause();
+      }
       setTimeout(() => {
         body.classList.remove('lock');
       }, 1000);
@@ -160,6 +176,15 @@ class App extends React.Component {
       pScroll = blocks[cBlock - 1].offsetTop;
       window.scrollTo(0,cScroll);
       body.classList.add('lock');
+      if (cBlock === 13) {
+        let vidStart = document.querySelector(`.slide-${cBlock + 1} .slide-container video`);
+        vidStart.play();
+      } else if (cBlock < 13 && cBlock > 1) {
+        let vidStop = document.querySelector(`.slide-${cBlock + 2} .slide-container video`),
+            vidStart = document.querySelector(`.slide-${cBlock + 1} .slide-container video`);
+        vidStart.play();
+        vidStop.pause();
+      }
       setTimeout(() => {
         body.classList.remove('lock');
       }, 1000);
@@ -176,8 +201,6 @@ class App extends React.Component {
       });
     }
 
-    
-    console.log(bJump);
   }
 
   setter() {
@@ -230,6 +253,7 @@ class App extends React.Component {
   }
 
 
+
   render() {
 
     window.addEventListener('beforeunload', () => {
@@ -240,11 +264,13 @@ class App extends React.Component {
       this.setter();
     });
 
+
     setTimeout(() => {
       window.addEventListener('scroll', () => {
         this.scroller();
       });
     }, 500);
+
 
 
   

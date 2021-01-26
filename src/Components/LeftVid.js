@@ -12,7 +12,7 @@ function LeftVid(props) {
             </div>
             <div className=" flex-contain flex-contain-img">
                 <div className="slide-container">
-                    <img src={`./images/block-${(props.block + 1)}.jpg`} alt=""></img>
+                    <img src={`./images/block-${(props.imgBlock + 1)}.jpg`} alt=""></img>
                     <p>Windowpane Dress</p>
                 </div>
             </div>

@@ -37,25 +37,25 @@ function SideNav(props) {
 					<img src="./Images/block-5.jpg" alt=""></img>
 				</div>
 				<div className="hide">
+					<img src="./Images/block-1.jpg" alt=""></img>
+				</div>
+				<div className="hide">
+					<img src="./Images/block-2.jpg" alt=""></img>
+				</div>
+				<div className="hide">
+					<img src="./Images/block-3.jpg" alt=""></img>
+				</div>
+				<div className="hide">
+					<img src="./Images/block-4.jpg" alt=""></img>
+				</div>
+				<div className="hide">
+					<img src="./Images/block-5.jpg" alt=""></img>
+				</div>
+				<div className="hide">
 					<img src="./Images/block-6.jpg" alt=""></img>
 				</div>
 				<div className="hide">
-					<img src="./Images/block-7.jpg" alt=""></img>
-				</div>
-				<div className="hide">
-					<img src="./Images/block-8.jpg" alt=""></img>
-				</div>
-				<div className="hide">
-					<img src="./Images/block-9.jpg" alt=""></img>
-				</div>
-				<div className="hide">
-					<img src="./Images/block-10.jpg" alt=""></img>
-				</div>
-				<div className="hide">
-					<img src="./Images/block-11.jpg" alt=""></img>
-				</div>
-				<div className="hide">
-					<img src="./Images/block-12.jpg" alt=""></img>
+					<img src="./Images/block-1.jpg" alt=""></img>
 				</div>
 			</div>
         </aside>

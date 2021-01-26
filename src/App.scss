@@ -24,6 +24,14 @@ body {
   div {
     width: 100%;
     height: 100vh;
+
+    // &:nth-of-type(odd) {
+    //   background-color: aqua;
+    // }
+
+    // &:nth-of-type(even) {
+    //   background-color: rosybrown;
+    // }
   }
 }
 

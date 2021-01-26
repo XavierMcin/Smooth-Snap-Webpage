@@ -6,7 +6,7 @@ function RightVid(props) {
         <section className={`slider slide-${(props.block + 3)}`} id={`slide${(props.block + 1)}`}>
             <div className=" flex-contain flex-contain-img">
                 <div className="slide-container">
-                    <img src={`./images/block-${(props.block + 1)}.jpg`} alt=""></img>
+                    <img src={`./images/block-${(props.imgBlock + 1)}.jpg`} alt=""></img>
                     <p>Wool Overcoat - Floral Midi</p>
                 </div>
             </div>
