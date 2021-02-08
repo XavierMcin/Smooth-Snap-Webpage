@@ -5,6 +5,7 @@ import SideNav from './Components/Aside';
 import RightVid from './Components/RightVid';
 import LeftVid from './Components/LeftVid';
 
+
 let slideBlocks = [],
     pScroll = 0,
     cScroll = 0,
@@ -73,8 +74,10 @@ class App extends React.Component {
         cBlock++;
         cScroll = blocks[cBlock].offsetTop;
         pScroll = blocks[cBlock - 1].offsetTop;
+
         window.scrollTo(0,cScroll);
         body.classList.add('lock');
+
         if (cBlock === 2) {
           let vidStart = document.querySelector(`.slide-${cBlock + 1} .slide-container video`);
           vidStart.play();
@@ -84,6 +87,7 @@ class App extends React.Component {
           vidStart.play();
           vidStop.pause();
         }
+
         setTimeout(() => {
           body.classList.remove('lock');
         }, 1000);
@@ -98,6 +102,7 @@ class App extends React.Component {
             transition: "transform .6s ease-in-out"
           }
         });
+
       }
 
     } else if (top < cScroll - 50) {
@@ -133,7 +138,7 @@ class App extends React.Component {
         }
       });
     } 
-    console.log(cBlock);
+  
   }
 
   jumper(elem) {
@@ -254,7 +259,11 @@ class App extends React.Component {
 
 
 
+
+
   render() {
+
+    
 
     window.addEventListener('beforeunload', () => {
       window.scrollTo(0,0);
@@ -264,12 +273,21 @@ class App extends React.Component {
       this.setter();
     });
 
-
     setTimeout(() => {
       window.addEventListener('scroll', () => {
-        this.scroller();
+        console.log('scrolling');
+        let pageTop = window.scrollY;
+
+        if (pageTop >= cScroll + 50) {
+          this.scroller();
+        } else if (pageTop <= cScroll - 50) {
+          this.scroller();
+        }
       });
     }, 500);
+
+
+
 
 
 

@@ -16,6 +16,7 @@ body {
 
 #mainWrap {
     position: fixed;
+    // visibility: hidden;
 }
 
 .scroller {
@@ -24,6 +25,10 @@ body {
   div {
     width: 100%;
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
 
     // &:nth-of-type(odd) {
     //   background-color: aqua;
